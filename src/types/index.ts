@@ -1,3 +1,5 @@
+import { SaveList } from "@/queryFns/getSaveLists";
+
 export interface User {
   id: string;
   email: string;
@@ -13,4 +15,5 @@ export interface Blogs {
   authorId: string;
   user?: User;
   createdAt?: string;
+  save_lists?: SaveList[]
 }

@@ -15,7 +15,8 @@ const Blogs = (props: Props) => {
   })
 
   console.log(blogs);
-  console.log(isLoading);
+  
+  
   
   
 
@@ -42,7 +43,7 @@ const Blogs = (props: Props) => {
   return (
     <div className='xl:max-w-[35%] md:max-w-[70%] max-w-[90%] mx-auto mt-10'>
       {
-       blogs.length > 0 && blogs.map(blog => <BlogCard key={blog.id} id={blog.id} author={blog.user?.name || "James"} content={blog.content} title={blog.title} publishedAt={blog.createdAt}/>)
+       blogs.length > 0 && blogs.map(blog => <BlogCard key={blog.id} id={blog.id} author={blog.user?.name || "James"} content={blog.content} title={blog.title} publishedAt={blog.createdAt} saveLists={blog.save_lists}/>)
       }
     </div>
   )

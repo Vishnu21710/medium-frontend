@@ -5,7 +5,7 @@ import { SignupInput } from '@oblivion_2171/medium-common'
 import axios from 'axios'
 import { API_URL } from '../../constants/constants'
 import { useNavigate } from 'react-router-dom'
-import Spin from '../spin/Spin'
+import Spin from '../unused/spin/Spin'
 import { useAuth } from '../../contexts/AuthProvider'
 
 type Props = {

@@ -6,7 +6,7 @@ type Props = {}
 const CreateBlog = (props: Props) => {
   return (
     <div>
-        <Editor/>
+        {/* <Editor/> */}
     </div>
   )
 }

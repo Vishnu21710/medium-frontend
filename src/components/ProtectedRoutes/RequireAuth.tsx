@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { useAuth } from '../../contexts/AuthProvider'
 import { Navigate, useLocation } from 'react-router-dom'
+import { LoaderCircle } from 'lucide-react'
 
 type Props = {
     children: ReactNode
@@ -13,7 +14,11 @@ const RequireAuth = ({ children }: Props) => {
     console.log(auth, "auth");
     
     if (loading) {
-        return <p>Loading.....USERRRR</p>
+        return (
+            <div className='w-full h-screen flex justify-center items-center'>
+                        <LoaderCircle className='animate-spin w-7 h-7'/>
+            </div>
+        )
     }
 
     
