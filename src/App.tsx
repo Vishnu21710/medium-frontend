@@ -27,6 +27,7 @@ const App = (props: Props) => {
       <AuthProvider>
         <DeleteModalContextProvider>
         <BrowserRouter>
+        
           <Routes>
             <Route element={
               <Layout>
