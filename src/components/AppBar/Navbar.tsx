@@ -6,15 +6,16 @@ import { Link } from 'react-router-dom'
 import { useGetIdendity } from '../../hooks'
 import { useAuth } from '../../contexts/AuthProvider'
 import AvatarPopover from './AvatarPopover'
+import { useQueryClient } from '@tanstack/react-query'
 
 type Props = {}
 
 const Navbar = (props: Props) => {
 
-    const { auth, loading } = useAuth()
+    const { auth, loading, setAuth } = useAuth()
     // const {data:user, isLoading, error} = useGetIdendity()
 
-
+    const queryClient = useQueryClient()
 
 
 
@@ -22,17 +23,25 @@ const Navbar = (props: Props) => {
         <div className='flex justify-between px-14 py-2 border-[1px] border-slate-100'>
             <SearchBar />
             {!loading && <div className='flex gap-7 items-center'>
-                
+
                 {auth ?
                     <>
                         <Link to={"/create"} className='sm:flex gap-2 items-center hidden '>
                             <SquarePen strokeWidth={1} className='w-5 h-5 mt-[-2px] text-gray-600' size={25} />
                             <p className='text-gray-600 text-sm '>Write</p>
                         </Link>
-                        <p className='cursor-pointer' onClick={() => localStorage.removeItem("jwt") > location.reload()}>
+                        <p className='cursor-pointer' onClick={() => {
+                                localStorage.removeItem("jwt")
+                                if(auth.id){
+                                    setAuth?.(null)
+                                    // location.reload()
+                                    queryClient.clear()
+                                    // queryClient.cancelQueries({queryKey:["savelists"]})
+                                }
+                        }}>
                             <LogOut strokeWidth={1} className='w-5 h-5 mt-[-2px] text-gray-600' />
                         </p>
-                        <AvatarPopover/>
+                        <AvatarPopover />
                     </>
                     :
                     <>

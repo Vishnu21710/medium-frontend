@@ -1,22 +1,35 @@
-import React from 'react'
-import { useBlog } from '../hooks'
 import { useParams } from 'react-router-dom'
 import SingleBlog from '../components/Blogs/SingleBlog/SingleBlog'
+import { useQuery } from '@tanstack/react-query'
+import { getBlog } from '@/queryFns/getBlog'
+import FloatingButton from '@/components/floating-button'
 
 type Props = {}
 
 const Blog = (props: Props) => {
   const {id} = useParams()
-  const {data:blog, error, isLoading} = useBlog(id)
+ const {data:blog, fetchStatus, status} = useQuery({
+  queryKey: ["blog", id],
+  queryFn: ()=>getBlog(id)
+ })
 
 
-  if(isLoading){
+  if(status === "pending"){
     return <p>...Loading</p>
   }
 
+  if(status === "error"){
+    return "Something went wrong"
+  }
+
+
+  console.log(blog, 'blog');
+  
+
   return (
-    <div className='max-w-3xl mx-auto mt-10 '>
-        {blog && <SingleBlog content={blog?.content } title={blog?.title} author={blog.user?.name || "James "} createdAt='06-02-2024' time={`${Math.ceil(blog.content.split(" ").length / 200)} min read`} />}
+    <div className='max-w-3xl mx-auto mt-10 relative '>
+        <FloatingButton user_id={blog.user?.id}/>
+        <SingleBlog content={blog.content } description={blog.description} title={blog.title} author={blog?.user?.name!} publishedAt='06-02-2024' time={`${Math.ceil(blog.content.split(" ").length / 200)} min read`} image={blog.image.original}/>
     </div>
   )
 }

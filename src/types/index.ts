@@ -7,10 +7,20 @@ export interface User {
   createdAt?: string;
 }
 
+export interface Image {
+  id:number,
+  thumbnail: string,
+  small: string,
+  original: string
+}
+
 export interface Blogs {
   id: string;
   title: string;
   content: string;
+  description?:string,
+  image_id?:number,
+  image: Image
   published: boolean;
   authorId: string;
   user?: User;

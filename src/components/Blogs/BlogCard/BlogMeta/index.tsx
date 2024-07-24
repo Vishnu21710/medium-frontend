@@ -13,6 +13,7 @@ type Props = {
 
 const BlogMeta = ({ content, publishedAt, id, saveLists }: Props) => {
 
+    
 
     return (
         <div className='flex items-center sm:justify-start justify-between sm:gap-x-28 text-xs  text-gray-400 py-2'>

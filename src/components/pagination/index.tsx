@@ -23,12 +23,18 @@ export function Pagination({ currentPage, onPageChange, pageSize, siblingCount, 
 
     // const [page, setPage] = useState(1)
 
+    console.log(totalCount);
+    
+
 
     // let totalCount = 30
 
     // let pageCount = Math.ceil(totalCount / 3)
 
     const paginationRange = usePagination({ totalCount, currentPage, pageSize, siblingCount })
+
+    console.log(paginationRange);
+    
 
     const onNext = () => {
         onPageChange(currentPage + 1)

@@ -13,29 +13,31 @@ type Props = {
     publishedAt?: string
     id: string,
     saveLists?: SaveList[]
+    description:string ,
+    thumbnail?:string
     
 }
 
-const BlogCard = ({ author, content, title, publishedAt, id, saveLists }: Props) => {
+const BlogCard = ({ author, content, title, publishedAt, id, saveLists, thumbnail, description }: Props) => {
 
     const date = new Date(publishedAt || "")
 
     const {size} = useScreenSize()
 
-    let description  = content
+    let card_desc  = description
     let postTitle = title
 
     switch(size){
         case "sm":
-            description = truncateString(description, 50)
+            card_desc = truncateString(description, 50)
             postTitle = truncateString(postTitle, 50)
             break;
         case "md":
-            description = truncateString(description, 90)
+            card_desc = truncateString(description, 90)
             postTitle = truncateString(postTitle, 90)
             break;
         default: 
-            description = truncateString(description, 98)
+            card_desc = truncateString(description, 98)
             postTitle = truncateString(postTitle, 98)
 
     }
@@ -53,13 +55,13 @@ const BlogCard = ({ author, content, title, publishedAt, id, saveLists }: Props)
                             {postTitle}
                         </p>
                         <p className="sm:text-md text-sm text-gray-500">
-                            {description}
+                            {card_desc}
                         </p>
                     </div>
 
                 </div>
                 <div className="flex-none">
-                    <img className="sm:h-[130px] sm:w-[170px] rounded-sm h-[70px] w-[100px]" src="https://plus.unsplash.com/premium_photo-1720760948879-d10510c7049c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                    <img className="sm:h-[130px] sm:w-[170px] rounded-sm h-[70px] w-[100px]" src={thumbnail} alt="" />
                 </div>
             </Link>
             <div className="">

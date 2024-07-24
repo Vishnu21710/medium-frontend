@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { getList } from '@/queryFns/getList'
 import { useQuery } from '@tanstack/react-query'
-import { Ellipsis, MessageCircle, ShareIcon } from 'lucide-react'
+import { Ellipsis, LoaderCircle, MessageCircle, ShareIcon } from 'lucide-react'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
 import BlogPosts from './components/blog-posts'

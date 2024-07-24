@@ -17,12 +17,15 @@ import Highlights from './pages/Library/pages/highlights'
 import Statistics from './pages/Library/pages/statistics'
 import SingleList from './pages/Library/pages/single-list'
 import List from './pages/List/List'
+import { DeleteModalContextProvider } from './contexts/DeleteModalContext'
+import EditBlog from './pages/EditBlog'
 type Props = {}
 
 const App = (props: Props) => {
   return (
     <div className='font-["Playwrite PE"]'>
       <AuthProvider>
+        <DeleteModalContextProvider>
         <BrowserRouter>
           <Routes>
             <Route element={
@@ -34,7 +37,8 @@ const App = (props: Props) => {
               <Route element={<RequireAuth>
                 <Outlet />
               </RequireAuth>}>
-                <Route path='/create' element={<CreateBlog />} />
+                <Route path='/create' element={<CreateBlog />}/>
+                <Route path='/edit/:id' element={<EditBlog/>}/>
                 <Route path='/library' element={<LibraryLayout>
                   <Outlet />
                 </LibraryLayout>}>
@@ -54,6 +58,7 @@ const App = (props: Props) => {
           </Routes>
         </BrowserRouter>
         <Toaster richColors position='top-right' />
+        </DeleteModalContextProvider>
       </AuthProvider>
     </div>
   )

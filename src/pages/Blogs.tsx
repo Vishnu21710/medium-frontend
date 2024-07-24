@@ -9,24 +9,24 @@ const Blogs = (props: Props) => {
 
   // const { data: blogs, isLoading, error } = useGetBlogs()
 
-  const {data:blogs, error, isLoading, isSuccess, isError} = useQuery({
+  const { data: blogs, error, isLoading, isSuccess, isError, status } = useQuery({
     queryKey: ['blogs'],
     queryFn: getBlogs,
   })
 
   console.log(blogs);
-  
-  
-  
-  
+
+
+
+
 
   // if (!isError ) {
   //   return <p>Error</p>
   // }
 
-  
 
-  if (isLoading) {
+
+  if (status === "pending") {
     return <div className='xl:max-w-[35%] md:max-w-[70%] max-w-[85%] mx-auto mt-10'>
       <BlogCardSkeleton />
       <BlogCardSkeleton />
@@ -36,14 +36,16 @@ const Blogs = (props: Props) => {
     </div>
   }
 
-  if(!isSuccess){
+  if (status === "error") {
     return null
   }
+
+
 
   return (
     <div className='xl:max-w-[35%] md:max-w-[70%] max-w-[90%] mx-auto mt-10'>
       {
-       blogs.length > 0 && blogs.map(blog => <BlogCard key={blog.id} id={blog.id} author={blog.user?.name || "James"} content={blog.content} title={blog.title} publishedAt={blog.createdAt} saveLists={blog.save_lists}/>)
+        blogs.length > 0 && blogs.map(blog => <BlogCard thumbnail={blog.image.thumbnail} description={blog.description || ""} key={blog.id} id={blog.id} author={blog.user?.name || "James"} content={blog.content} title={blog.title} publishedAt={blog.createdAt} saveLists={blog.save_lists} />)
       }
     </div>
   )

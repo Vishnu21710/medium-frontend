@@ -1,5 +1,6 @@
 import BlogCard from '@/components/Blogs/BlogCard/BlogCard'
 import { SaveList } from '@/queryFns/getSaveLists'
+import { Image } from '@/types'
 import { FetchStatus } from '@tanstack/react-query'
 import { LoaderCircle } from 'lucide-react'
 import React from 'react'
@@ -8,10 +9,12 @@ type Post = {
     id: string,
     title: string,
     publishedAt: string,
-    content: string
+    content: string,
+    description: string
     user: {
         name: string
     }
+    image:Image
 }
 
 type Props = {
@@ -35,7 +38,7 @@ const BlogPosts = ({ saveListId, posts, fetchStatus }: Props) => {
         <div className='space-y-5'>
             {
                 posts.map((p) => (
-                    <BlogCard author={p.user.name} title={p.title} id={p.id} key={p.id} publishedAt={p.publishedAt} content={p.content} />
+                    <BlogCard description={p.description} thumbnail={p.image.thumbnail} author={p.user.name} title={p.title} id={p.id} key={p.id} publishedAt={p.publishedAt} content={p.content} />
                 ))
             }
         </div>

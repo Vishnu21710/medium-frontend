@@ -11,6 +11,7 @@ import { CheckedState } from '@radix-ui/react-checkbox'
 import { savePost } from '@/queryFns/savePost'
 import { toast } from 'sonner'
 import { unsavePost } from '@/queryFns/unsavePost'
+import { useAuth } from '@/contexts/AuthProvider'
 
 type Props = {
     post_id: string,
@@ -18,6 +19,8 @@ type Props = {
 }
 
 const SavePopover = ({ post_id }: Props) => {
+
+    const {auth, loading:authLoading} = useAuth()
 
     const queryClient = useQueryClient()
 
@@ -65,8 +68,8 @@ const SavePopover = ({ post_id }: Props) => {
     const { data: saveLists, isSuccess, isLoading } = useQuery({
         queryKey: ['savelists'],
         queryFn: getSaveLists,
-        staleTime: 5000 
-
+        staleTime: 5000,
+        enabled: !!auth?.id
     })
 
     // Save and Unsave post when user checks or unchecks the checkbox
@@ -96,6 +99,10 @@ const SavePopover = ({ post_id }: Props) => {
 
     const isPostSaved = saveLists?.some(sl => sl.posts.some(p => p.id === post_id))
 
+    console.log(isPostSaved, "Saved Post");
+    
+console.log(saveLists, 'saved list');
+
 
     return (
         <Popover>
@@ -103,8 +110,12 @@ const SavePopover = ({ post_id }: Props) => {
                 <Bookmark className={clsx('h-5 w-5 text-gray-400 cursor-pointer', isPostSaved  ? "fill-black" : "fill-white")} strokeWidth={1} />
             </PopoverTrigger>
             <PopoverContent className='space-y-4'>
+                {(!authLoading && !auth) && <div>Login in required</div>}
                 {
-                    isLoading && <LoaderCircle className='animate-spin h-6 w-6 mx-auto my-7' />
+                    (isLoading && auth) && <LoaderCircle className='animate-spin h-6 w-6 mx-auto my-7' />
+                }
+                {
+                    isSuccess && saveLists.length < 1 && <div>No Savelists</div>
                 }
                 {
                     isSuccess && saveLists.map(sl => (

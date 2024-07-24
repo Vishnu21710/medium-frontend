@@ -1,43 +1,118 @@
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { BlockTypeSelect, BoldItalicUnderlineToggles, ChangeCodeMirrorLanguage, codeBlockPlugin, codeMirrorPlugin, CodeToggle, ConditionalContents, imagePlugin, InsertAdmonition, InsertCodeBlock, InsertImage, InsertSandpack, listsPlugin, MDXEditor, MDXEditorMethods, quotePlugin, SandpackConfig, sandpackPlugin, ShowSandpackInfo, thematicBreakPlugin, toolbarPlugin, UndoRedo } from '@mdxeditor/editor'
+import '@mdxeditor/editor/style.css'
+import { headingsPlugin } from '@mdxeditor/editor'
+import axios from 'axios'
+import { ChangeEvent, useRef, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { redirect } from 'react-router-dom'
+import { QueryStatus } from '@tanstack/react-query'
+import Loader from '@/components/loader'
 
-type Props = {}
+type Props = {
+    handleContent?: (content:string)=>void
+    isPending?: boolean
+    title?:string,
+    description?:string,
+    content?:string  
+}
 
-const Editor = (props: Props) => {
+
+const Editor = ({handleContent, isPending, content}: Props) => {
+    const markdown = content || ""
+
+    const [mdxData, setMdxData] = useState()
+    const ref = useRef<MDXEditorMethods>(null)
+
+    console.log(status, 'Create Status');
+    
+
+    const defaultSnippetContent = `
+export default function App() {
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+    </div>
+  );
+}
+`.trim()
+
+    const simpleSandpackConfig: SandpackConfig = {
+        defaultPreset: 'react',
+        presets: [
+            {
+                label: 'React',
+                name: 'react',
+                meta: 'live react',
+                sandpackTemplate: 'react',
+                sandpackTheme: 'light',
+                snippetFileName: '/App.js',
+                snippetLanguage: 'jsx',
+                initialSnippetContent: defaultSnippetContent
+            },
+        ]
+    }
 
 
+    async function imageUploadHandler(image: File) {
+        const formData = new FormData()
+        formData.append('file', image)
+        console.log(formData.get("image"));
+
+        try {
+            const data = await axios.post('http://localhost:8787/api/v1/uploads', formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            })
+            console.log(data.data.image);
+
+            return data.data.image
+        } catch (error) {
+            return "something went wrong"
+        }
+        // send the file to your server and return
+        // the URL of the uploaded image in the response
+
+    }
+
+    console.log(mdxData);
 
     return (
-        <div className='w-[50%] mx-auto'>
-            <p className='text-4xl font-bold my-10'>Blog Editor</p>
-            <CKEditor
-                editor={ClassicEditor}
-                
-                config={{
-                    plugins: [SimpleUploadAdapter],
-                    simpleUpload:{
-                        uploadUrl: "http://localhost:8787/api/v1/uploads"
-                    }
-                     
-                }}
-                data={"Hello From Medium Blog"}
-                onReady={editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log('Editor is ready to use!', editor);
-                }}
-                onChange={(event) => {
-                    console.log(event);
-                }}
-                onBlur={(event, editor) => {
-                    console.log('Blur.', editor);
-                }}
-                onFocus={(event, editor) => {
-                    console.log('Focus.', editor);
-                }}
-            >
+        <div className=' prose min-w-full' >
+            <p>Editor</p>
+            <MDXEditor ref={ref} plugins={[headingsPlugin(), thematicBreakPlugin(), listsPlugin(), quotePlugin(), toolbarPlugin({
+                toolbarContents: () => (
+                    <>
+                        {' '}
+                        <UndoRedo />
+                        <BoldItalicUnderlineToggles />
+                        <BlockTypeSelect />
+                        <CodeToggle />
+                        <InsertAdmonition />
+                        <InsertCodeBlock />
+                        <InsertImage />
+                        <ConditionalContents
+                            options={[
+                                { when: (editor) => editor?.editorType === 'codeblock', contents: () => <ChangeCodeMirrorLanguage /> },
 
-            </CKEditor>
-        </div>
+                            ]}
+                        />
+                    </>
+                )
+            }), codeBlockPlugin({ defaultCodeBlockLanguage: 'js' }),
+            codeMirrorPlugin({ codeBlockLanguages: { js: 'JavaScript', css: 'CSS' } }),
+            imagePlugin({
+                imageUploadHandler: imageUploadHandler
+            })
+            ]} markdown={markdown} />
+            <Button variant={"secondary"} onClick={() => {
+                const markdown = ref.current?.getMarkdown()
+                console.log(markdown);
+                if(markdown){
+                    handleContent?.(markdown)
+                }
+
+            }}>{isPending ? <Loader/> : "Save"}</Button>
+        </div >
     )
 }
 

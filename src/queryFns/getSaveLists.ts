@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../constants/constants";
+import { Image } from "@/types";
 
 export type SaveList = {
   title: string;
@@ -8,6 +9,8 @@ export type SaveList = {
     id: string,
     title: string,
     publishedAt: string,
+    description:string,
+    image:Image
     content:string,
     user:{
       name:string

@@ -33,7 +33,7 @@ const AvatarPopover = () => {
             <PopoverContent className='mx-4 w-48'>
                 
                 <ul className='flex flex-col gap-y-5'>
-                <PopoverClose className='sm:hidden block' key={"write"}>
+                <PopoverClose asChild className='sm:hidden block' key={"write"}>
                     <Link to={"/create"} className='flex gap-x-4 items-center'>
                         <SquarePen strokeWidth={1} className='w-5 h-5 mt-[-2px] text-gray-600' size={25} />
                         <p className='text-gray-600 text-sm '>Write</p>
