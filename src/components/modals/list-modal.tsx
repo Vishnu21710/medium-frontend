@@ -24,7 +24,7 @@ export function ListModal() {
 
 
     const onKeyPress = (e:KeyboardEvent)=>{
-        if(e.key === "Enter"){
+        if(e.key === "Enter" && isOpen){
             handleCreate()
         }
     }
