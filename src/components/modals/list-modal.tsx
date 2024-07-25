@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useEventListener } from "@/hooks/useEventListener"
 import { useListModal } from "@/hooks/useListModal"
 import { createList } from "@/queryFns/createList"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -20,6 +21,26 @@ export function ListModal() {
 
     const { isOpen, onClose } = useListModal()
     const [title, setTitle] = useState("")
+
+
+    const onKeyPress = (e:KeyboardEvent)=>{
+        if(e.key === "Enter"){
+            handleCreate()
+        }
+    }
+   
+
+    useEventListener("keyup", onKeyPress)
+    
+
+    const handleCreate = () => {
+
+        if (title) {
+            mutate({ title })
+        }
+    }
+
+   
 
     const queryClient = useQueryClient()
 
@@ -41,12 +62,6 @@ export function ListModal() {
     })
 
 
-
-    const handleCreate = () => {
-        if (title) {
-            mutate({ title })
-        }
-    }
 
 
     return (
@@ -72,13 +87,14 @@ export function ListModal() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setTitle(e.target.value)
                             }}
+                            
                         />
                     </div>
 
                 </div>
                 <DialogFooter>
-                    <Button onClick={onClose} variant={"outline"} >Cancel</Button>
-                    <Button disabled={isPending} onClick={handleCreate} className="bg-green-600 text-white hover:bg-green-600/90">{isPending ? <LoaderCircle className="h-4 w-4 animate-spin" /> : "Save"}</Button>
+                    <Button  onClick={onClose} variant={"outline"} >Cancel</Button>
+                    <Button  disabled={isPending} onClick={handleCreate} className="bg-green-600 text-white hover:bg-green-600/90">{isPending ? <LoaderCircle className="h-4 w-4 animate-spin" /> : "Save"}</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

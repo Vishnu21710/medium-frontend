@@ -8,7 +8,7 @@ type Props = {}
 
 const UserLists = (props: Props) => {
 
-  const { data: saveLists, isSuccess, isLoading } = useQuery({
+  const { data: saveLists, isSuccess, isLoading, isFetching} = useQuery({
     queryKey: ['savelists'],
     queryFn: getSaveLists,
     staleTime: 5000
@@ -16,7 +16,7 @@ const UserLists = (props: Props) => {
 
   console.log(saveLists);
 
-  if (isLoading) {
+  if (isLoading ) {
     return (
       <div className='w-full flex justify-center'>
         <LoaderCircle className='animate-spin w-7 h-7' />
@@ -27,7 +27,7 @@ const UserLists = (props: Props) => {
   return (
     <div className='space-y-7'>
       {
-        isSuccess && saveLists.map((sl)=><SaveListCard title={sl.title} id={sl.id} totalPosts={sl.posts.length} name={sl.user.name} key={sl.id}/>)
+        (isSuccess ) && saveLists.map((sl)=><SaveListCard title={sl.title} id={sl.id} totalPosts={sl.posts.length} name={sl.user.name} key={sl.id}/>)
       }
     </div>
   )
