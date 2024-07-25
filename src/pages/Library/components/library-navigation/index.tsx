@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import { Link, useLocation } from 'react-router-dom'
 
-type Props = {}
 
 const nav_links = [
     {
@@ -22,7 +21,7 @@ const nav_links = [
     }
 ]
 
-const LibraryNavbar = (props: Props) => {
+const LibraryNavbar = () => {
 
 
     const { pathname } = useLocation()

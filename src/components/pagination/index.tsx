@@ -8,7 +8,6 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination"
 import { usePagination } from "@/hooks/usePagination"
-import { useState } from "react"
 import { Button } from "../ui/button"
 
 type Props = {

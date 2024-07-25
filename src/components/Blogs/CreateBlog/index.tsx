@@ -1,29 +1,26 @@
-import { DeleteIcon, FileUp, Trash2 } from 'lucide-react'
+import {  Trash2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import React, { ChangeEvent, useState } from 'react'
+import  { ChangeEvent, useState } from 'react'
 import Editor from './Editor'
 import { Button } from '@/components/ui/button'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createBlogs } from '@/queryFns/createBlog'
-import axios from 'axios'
-import { API_URL } from '@/constants/constants'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { upload } from '@/lib/utils'
 
-type Props = {}
 
-const Create = (props: Props) => {
+const Create = () => {
 
     const [loading, setLoading] = useState(false)
 
     const queryClient = useQueryClient()
     const navigate = useNavigate()
-    const { status, data, mutate, error, isPending } = useMutation({
+    const { data, mutate, error } = useMutation({
         mutationFn: ({ title, description, content, image_id }: { title: string, description: string, content: string, image_id: number }) => createBlogs(title, description, content, image_id),
-        onSuccess:(data)=>{
+        onSuccess:()=>{
             toast.success("Post Published")
             queryClient.invalidateQueries({queryKey: ["blogs"]})
             navigate('/')

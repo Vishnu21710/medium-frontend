@@ -1,16 +1,12 @@
-import { BookOpen, LogOut, Power, SearchIcon, SquarePen, UserRoundPlus } from 'lucide-react'
-import React from 'react'
-import { Avatar } from '../Blogs/BlogCard/BlogCard'
+import {  LogOut, Power, SquarePen, UserRoundPlus } from 'lucide-react'
 import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
-import { useGetIdendity } from '../../hooks'
 import { useAuth } from '../../contexts/AuthProvider'
 import AvatarPopover from './AvatarPopover'
 import { useQueryClient } from '@tanstack/react-query'
 
-type Props = {}
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
 
     const { auth, loading, setAuth } = useAuth()
     // const {data:user, isLoading, error} = useGetIdendity()

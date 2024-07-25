@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { API_URL } from "../constants/constants";
 import { Blogs as BlogType } from "../types";
 

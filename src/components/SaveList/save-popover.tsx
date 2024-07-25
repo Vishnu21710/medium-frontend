@@ -29,7 +29,7 @@ const SavePopover = ({ post_id }: Props) => {
 
 
 
-    const { data, isSuccess: isPostSavedOnDatabase, error, isPending, mutate, variables } = useMutation({
+    const { mutate } = useMutation({
         mutationKey: ["connectPost"],
         mutationFn: (data: { post_id: string, save_list_ids: number[] }) => {
             return savePost(data.post_id, data.save_list_ids)

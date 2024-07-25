@@ -1,13 +1,9 @@
-import { Button } from '@/components/ui/button'
 import { useListModal } from '@/hooks/useListModal'
-import { BookmarkPlus } from 'lucide-react'
-import React from 'react'
 import LibraryHeader from './components/library-header'
 import LibraryAdd from './components/library-add'
 
-type Props = {}
 
-const Library = (props: Props) => {
+const Library = () => {
 
     const { onOpen } = useListModal()
 

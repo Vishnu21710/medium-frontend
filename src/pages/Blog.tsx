@@ -4,11 +4,9 @@ import { useQuery } from '@tanstack/react-query'
 import { getBlog } from '@/queryFns/getBlog'
 import FloatingButton from '@/components/floating-button'
 
-type Props = {}
-
-const Blog = (props: Props) => {
+const Blog = () => {
   const {id} = useParams()
- const {data:blog, fetchStatus, status} = useQuery({
+ const {data:blog, status} = useQuery({
   queryKey: ["blog", id],
   queryFn: ()=>getBlog(id)
  })

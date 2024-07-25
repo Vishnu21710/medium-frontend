@@ -1,8 +1,6 @@
-import React from 'react'
 
-type Props = {}
 
-const BlogCardSkeleton = (props: Props) => {
+const BlogCardSkeleton = () => {
     return (
         <div className="space-y-5 border-b-[1px] border-gray-200 pt-5 pb-10 animate-pulse">
             <div className="flex gap-3 items-center">

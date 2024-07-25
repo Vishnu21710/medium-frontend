@@ -1,4 +1,3 @@
-import React from 'react'
 import EditButton from './edit-button'
 import DeleteButton from './delete-button'
 import { useAuth } from '@/contexts/AuthProvider'

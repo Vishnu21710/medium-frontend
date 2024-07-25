@@ -2,14 +2,13 @@ import { useQuery } from '@tanstack/react-query'
 import BlogCard from '../components/Blogs/BlogCard/BlogCard'
 import BlogCardSkeleton from '../components/Blogs/BlogCard/BlogCardSkeleton'
 import { getBlogs } from '../queryFns/getBlogs'
-type Props = {}
 
 
-const Blogs = (props: Props) => {
+const Blogs = () => {
 
   // const { data: blogs, isLoading, error } = useGetBlogs()
 
-  const { data: blogs, error, isLoading, isSuccess, isError, status } = useQuery({
+  const { data: blogs, status } = useQuery({
     queryKey: ['blogs'],
     queryFn: getBlogs,
   })

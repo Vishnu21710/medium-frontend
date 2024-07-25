@@ -1,9 +1,7 @@
 import BlogCard from '@/components/Blogs/BlogCard/BlogCard'
-import { SaveList } from '@/queryFns/getSaveLists'
 import { Image } from '@/types'
 import { FetchStatus } from '@tanstack/react-query'
 import { LoaderCircle } from 'lucide-react'
-import React from 'react'
 
 type Post = {
     id: string,
@@ -23,7 +21,7 @@ type Props = {
     fetchStatus: FetchStatus
 }
 
-const BlogPosts = ({ saveListId, posts, fetchStatus }: Props) => {
+const BlogPosts = ({  posts, fetchStatus }: Props) => {
 
     if(fetchStatus === "fetching"){
         return (

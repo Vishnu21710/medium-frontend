@@ -14,7 +14,7 @@ import { useListModal } from "@/hooks/useListModal"
 import { createList } from "@/queryFns/createList"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { LoaderCircle } from "lucide-react"
-import { ChangeEvent, useEffect, useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { toast } from "sonner"
 
 export function ListModal() {

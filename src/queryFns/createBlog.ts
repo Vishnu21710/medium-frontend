@@ -1,7 +1,6 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { API_URL } from "../constants/constants";
 import { Blogs as BlogType } from "../types";
-import { SaveList } from "./getSaveLists";
 
 export async function createBlogs(title:string, description:string, content:string, image_id:number) {
   try {

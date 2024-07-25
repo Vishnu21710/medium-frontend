@@ -1,13 +1,10 @@
-import { ReactNode } from 'react'
 import { Avatar, AvatarImage } from '../ui/avatar'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-type Props = {
-    children: ReactNode
-}
 
-const SingleListLayout = ({ children }: Props) => {
+
+const SingleListLayout = () => {
     const params = useParams()
 
     const { } = useQuery({

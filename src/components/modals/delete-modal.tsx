@@ -6,7 +6,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -31,7 +30,7 @@ export function DeleteModal() {
 
     const {id} = useParams()
 
-    const {data, isPending, mutate} = useMutation({
+    const { isPending, mutate} = useMutation({
         mutationKey: ["deleteBlog", ],
         mutationFn: ()=>deleteBlog(id),
         onSuccess:(data)=>{

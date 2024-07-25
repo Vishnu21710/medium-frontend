@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import { LoaderCircle } from 'lucide-react'
-import React from 'react'
 
 type Props = {
     className?:string

@@ -1,9 +1,7 @@
-import React from 'react'
 import ComingSoon from '../../components/coming-soon'
 
-type Props = {}
 
-const SavedLists = (props: Props) => {
+const SavedLists = () => {
   return (
     <div>
       <ComingSoon/>

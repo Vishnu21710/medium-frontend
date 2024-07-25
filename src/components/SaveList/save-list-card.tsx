@@ -1,7 +1,7 @@
-import React, { ElementRef, KeyboardEventHandler, LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react'
+import { ElementRef, KeyboardEventHandler, useEffect, useRef, useState } from 'react'
 import { Avatar, AvatarImage } from '../ui/avatar'
-import { Ellipsis, LoaderCircle } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom'
+import {  LoaderCircle } from 'lucide-react'
+import {  useNavigate } from 'react-router-dom'
 import { useAuth } from '@/contexts/AuthProvider'
 import SaveListActions from './save-list-actions'
 import { Input } from '../ui/input'
@@ -21,7 +21,7 @@ const SaveListCard = ({ title, name, totalPosts, id }: Props) => {
     const queryClient = useQueryClient()
 
     //auth hook
-    const { auth, loading } = useAuth()
+    const { loading } = useAuth()
     //states
     const [saveListTitle, setSaveListTitle] = useState(title)
     const [edit, setEdit] = useState(false)
@@ -88,7 +88,7 @@ const SaveListCard = ({ title, name, totalPosts, id }: Props) => {
                     <p className='text-xs'>{name}</p>
                 </div>
                 <div onClick={(e) => e.stopPropagation()} className='inline-block'>
-                    {!edit ? <Button disabled={isPending} variant={"ghost"} onClick={(e) => {
+                    {!edit ? <Button disabled={isPending} variant={"ghost"} onClick={() => {
                         setEdit(true)
 
                     }} className='font-bold text-2xl p-0'>{saveListTitle}</Button> : <Input  onKeyDown={onKeyDown} ref={inputRef} onChange={e => setSaveListTitle(e.target.value)} defaultValue={saveListTitle} onBlur={onBlur} />}

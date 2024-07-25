@@ -1,11 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import React from 'react'
 import { Link } from 'react-router-dom'
 
-type Props = {}
 
-const ComingSoon = (props: Props) => {
+const ComingSoon = () => {
     return (
         <Card className=' bg-gray-50/80'>
             <CardHeader className='space-y-5'>

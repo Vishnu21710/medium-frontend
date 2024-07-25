@@ -9,19 +9,16 @@ import CreateBlog from './pages/CreateBlog'
 import AuthProvider from './contexts/AuthProvider'
 import RequireAuth from './components/ProtectedRoutes/RequireAuth'
 import { Toaster } from 'sonner'
-import Library from './pages/Library'
 import LibraryLayout from './components/Layout/LibraryLayout'
 import UserLists from './pages/Library/pages/lists'
 import SavedLists from './pages/Library/pages/saved-lists'
 import Highlights from './pages/Library/pages/highlights'
 import Statistics from './pages/Library/pages/statistics'
-import SingleList from './pages/Library/pages/single-list'
 import List from './pages/List/List'
 import { DeleteModalContextProvider } from './contexts/DeleteModalContext'
 import EditBlog from './pages/EditBlog'
-type Props = {}
 
-const App = (props: Props) => {
+const App = () => {
   return (
     <div className='font-["Playwrite PE"]'>
       <AuthProvider>

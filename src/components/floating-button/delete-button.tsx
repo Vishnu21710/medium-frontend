@@ -1,7 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
 import { Trash2Icon } from 'lucide-react'
-import { useParams } from 'react-router-dom'
-import Loader from '../loader'
 
 type Props = {
     onClick: () => void

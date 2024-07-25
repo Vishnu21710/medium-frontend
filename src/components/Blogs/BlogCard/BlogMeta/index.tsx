@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import {Ellipsis, ThumbsUp } from 'lucide-react'
 import moment from 'moment'
 import SavePopover from '@/components/SaveList/save-popover'

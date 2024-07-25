@@ -1,8 +1,6 @@
-import React from 'react'
 
-type Props = {}
 
-const Quote = (props: Props) => {
+const Quote = () => {
     return (
         <div className='hidden lg:flex flex-col items-center justify-center  h-screen bg-slate-100/50 p-5 '>
 

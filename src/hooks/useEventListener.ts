@@ -1,4 +1,4 @@
-import { EventHandler, useEffect } from "react"
+import { useEffect } from "react"
 
 
 export const useEventListener = <K extends keyof WindowEventMap>(eventName:K, handler:(e:WindowEventMap[K])=>void )=>{

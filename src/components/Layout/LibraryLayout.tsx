@@ -2,7 +2,7 @@ import { useListModal } from '@/hooks/useListModal'
 import LibraryAdd from '@/pages/Library/components/library-add'
 import LibraryHeader from '@/pages/Library/components/library-header'
 import LibraryNavbar from '@/pages/Library/components/library-navigation'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 type Props = {
     children: ReactNode

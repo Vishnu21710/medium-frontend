@@ -17,6 +17,7 @@ export async function savePost(post_id: string, save_list_ids:number[]) {
       }
     );
 
+    return response.data
 
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -1,10 +1,7 @@
-import React from 'react'
-import Editor from '../components/Blogs/CreateBlog/Editor'
 import Create from '@/components/Blogs/CreateBlog'
 
-type Props = {}
 
-const CreateBlog = (props: Props) => {
+const CreateBlog = () => {
   return (
     <div>
         {/* <Editor/> */}

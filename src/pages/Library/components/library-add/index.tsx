@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { BookmarkPlus } from 'lucide-react'
-import React from 'react'
 
 type Props = {
     onOpen: ()=>void

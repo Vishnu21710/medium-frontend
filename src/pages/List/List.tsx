@@ -1,7 +1,7 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { getList } from '@/queryFns/getList'
 import { useQuery } from '@tanstack/react-query'
-import { Ellipsis, LoaderCircle, MessageCircle, ShareIcon } from 'lucide-react'
+import { Ellipsis, MessageCircle, ShareIcon } from 'lucide-react'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
 import BlogPosts from './components/blog-posts'
@@ -9,12 +9,14 @@ import { useState } from 'react'
 import { Pagination } from '@/components/pagination'
 import Loader from '@/components/loader'
 
-type Props = {}
 
-const List = (props: Props) => {
+const List = () => {
     const params = useParams()
     const [page, setPage] = useState<number>(1)
+    
     const [pageSize, setPageSize] = useState<number>(1)
+    console.log(setPageSize);
+    
 
     const onPageChange = (val:number)=>{
         console.log("inside onPage Change", val);
@@ -27,7 +29,7 @@ const List = (props: Props) => {
 
     const id = Number(params.id)
 
-    const { data: saveList, isLoading, error, status, isError, fetchStatus } = useQuery({
+    const { data: saveList, status, isError, fetchStatus } = useQuery({
         queryKey: ["list", id, page, pageSize],
         queryFn: () => getList(id, page, pageSize),
         staleTime: 1000 * 60 * 5,

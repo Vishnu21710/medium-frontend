@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import moment from "moment"
 import { Link } from "react-router-dom"
 import BlogMeta from "./BlogMeta"
 import { SaveList } from "@/queryFns/getSaveLists"
@@ -20,7 +19,6 @@ type Props = {
 
 const BlogCard = ({ author, content, title, publishedAt, id, saveLists, thumbnail, description }: Props) => {
 
-    const date = new Date(publishedAt || "")
 
     const {size} = useScreenSize()
 

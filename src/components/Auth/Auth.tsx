@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import Input from './Input'
 import { Link, useLocation } from 'react-router-dom'
 import { SignupInput } from '@oblivion_2171/medium-common'
@@ -25,7 +25,7 @@ const Auth = ({ type }: Props) => {
         name: ""
     })
 
-    const { auth,setAuth} = useAuth()
+    const { setAuth} = useAuth()
 
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"

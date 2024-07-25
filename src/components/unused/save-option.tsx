@@ -1,10 +1,9 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { SaveList } from '../../queryFns/getSaveLists'
 import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
 import { useMutation } from '@tanstack/react-query'
 import { savePost } from '@/queryFns/savePost'
-import axios from 'axios'
 import { LoaderCircle } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -17,13 +16,15 @@ type Props = {
 }
 
 const SaveOptions = ({ saveLists, isLoading, openOptions, handleOpenOptions, id }: Props) => {
+    console.log(isLoading);
+    
 
-    const {data, isSuccess, error, isPending, mutate} = useMutation({
+    const { isPending, mutate} = useMutation({
         mutationKey: ["connectPost"],
         mutationFn: (data:{post_id:string, save_list_ids: number[]})=>{
             return savePost(data.post_id, data.save_list_ids)
         },
-        onSuccess: (data)=>{
+        onSuccess: ()=>{
             toast.success("Saved To List")
         }
     })

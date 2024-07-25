@@ -1,11 +1,9 @@
-import { BlockTypeSelect, BoldItalicUnderlineToggles, ChangeCodeMirrorLanguage, codeBlockPlugin, codeMirrorPlugin, CodeToggle, ConditionalContents, imagePlugin, InsertAdmonition, InsertCodeBlock, InsertImage, InsertSandpack, listsPlugin, MDXEditor, MDXEditorMethods, quotePlugin, SandpackConfig, sandpackPlugin, ShowSandpackInfo, thematicBreakPlugin, toolbarPlugin, UndoRedo } from '@mdxeditor/editor'
+import { BlockTypeSelect, BoldItalicUnderlineToggles, ChangeCodeMirrorLanguage, codeBlockPlugin, codeMirrorPlugin, CodeToggle, ConditionalContents, imagePlugin, InsertAdmonition, InsertCodeBlock, InsertImage, listsPlugin, MDXEditor, MDXEditorMethods, quotePlugin, thematicBreakPlugin, toolbarPlugin, UndoRedo } from '@mdxeditor/editor'
 import '@mdxeditor/editor/style.css'
 import { headingsPlugin } from '@mdxeditor/editor'
 import axios from 'axios'
-import { ChangeEvent, useRef, useState } from 'react'
+import {  useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { redirect } from 'react-router-dom'
-import { QueryStatus } from '@tanstack/react-query'
 import Loader from '@/components/loader'
 
 type Props = {
@@ -20,38 +18,38 @@ type Props = {
 const Editor = ({handleContent, isPending, content}: Props) => {
     const markdown = content || ""
 
-    const [mdxData, setMdxData] = useState()
+    const [mdxData] = useState()
     const ref = useRef<MDXEditorMethods>(null)
 
     console.log(status, 'Create Status');
     
 
-    const defaultSnippetContent = `
-export default function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
-  );
-}
-`.trim()
+//     const defaultSnippetContent = `
+// export default function App() {
+//   return (
+//     <div className="App">
+//       <h1>Hello CodeSandbox</h1>
+//       <h2>Start editing to see some magic happen!</h2>
+//     </div>
+//   );
+// }
+// `.trim()
 
-    const simpleSandpackConfig: SandpackConfig = {
-        defaultPreset: 'react',
-        presets: [
-            {
-                label: 'React',
-                name: 'react',
-                meta: 'live react',
-                sandpackTemplate: 'react',
-                sandpackTheme: 'light',
-                snippetFileName: '/App.js',
-                snippetLanguage: 'jsx',
-                initialSnippetContent: defaultSnippetContent
-            },
-        ]
-    }
+    // const simpleSandpackConfig: SandpackConfig = {
+    //     defaultPreset: 'react',
+    //     presets: [
+    //         {
+    //             label: 'React',
+    //             name: 'react',
+    //             meta: 'live react',
+    //             sandpackTemplate: 'react',
+    //             sandpackTheme: 'light',
+    //             snippetFileName: '/App.js',
+    //             snippetLanguage: 'jsx',
+    //             initialSnippetContent: defaultSnippetContent
+    //         },
+    //     ]
+    // }
 
 
     async function imageUploadHandler(image: File) {

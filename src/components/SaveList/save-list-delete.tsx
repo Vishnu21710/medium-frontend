@@ -11,7 +11,7 @@ const SaveListDelete = ({saveListId}: Props) => {
 
     const queryClient = useQueryClient()
 
-    const {mutate, isPending} = useMutation({
+    const {mutate} = useMutation({
         mutationKey: ["delete-savelist", saveListId],
         mutationFn: ()=>deleteSaveList(saveListId),
         onSuccess:(data)=>{

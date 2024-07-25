@@ -9,16 +9,15 @@ import { getBlog } from '@/queryFns/getBlog'
 import { updateBlog } from '@/queryFns/updateBlog'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Trash2 } from 'lucide-react'
-import React, { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
-type Props = {}
 
-const EditBlog = (props: Props) => {
+const EditBlog = () => {
 
     const { id } = useParams()
-    const { data: blog, fetchStatus, status } = useQuery({
+    const { data: blog, status } = useQuery({
         queryKey: ["blog", id],
         queryFn: () => getBlog(id)
     })
@@ -27,17 +26,17 @@ const EditBlog = (props: Props) => {
 
     const [title, setTitle] = useState<string|undefined>(blog?.title)
     const [description, setDescription] = useState<string|undefined>(blog?.description)
-    const [content, setContent] = useState<string|undefined>(blog?.content)
+    // const [content, setContent] = useState<string|undefined>(blog?.content)
     const [blogImage, setBlogImage] = useState<string | null>(null)
     const [image, setImage] = useState<File | null>(null)
     const inputRef = useRef<HTMLInputElement>(null)
     const [loading, setLoading] = useState(false)
 
 
-    const {mutateAsync, data, isPending} = useMutation({
+    const {mutateAsync} = useMutation({
         mutationKey: ['updateblog', id],
         mutationFn: ({title, description, content, image_id, id}:{title:string|undefined , description: string|undefined, content: string|undefined, image_id: number , id:string  })=>updateBlog(title, description, content, image_id, id),
-        onSuccess: (data)=>{
+        onSuccess: ()=>{
             toast.success("Post Updated")
             queryClient.invalidateQueries({queryKey:['blogs']})
             queryClient.invalidateQueries({queryKey:['blog', id]})

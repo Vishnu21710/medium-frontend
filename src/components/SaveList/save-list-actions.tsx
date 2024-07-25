@@ -1,6 +1,5 @@
-import React from 'react'
 import { Popover, PopoverTrigger, PopoverContent, PopoverClose } from '../ui/popover'
-import { Delete, Edit, Ellipsis, Trash } from 'lucide-react'
+import { Ellipsis } from 'lucide-react'
 import { Button } from '../ui/button'
 import SaveListEdit from './save-list-edit'
 import SaveListDelete from './save-list-delete'

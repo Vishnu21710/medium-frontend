@@ -1,6 +1,4 @@
-import { Image } from '@/types'
 import BlogAuthor from './BlogAuthor'
-import Markdown from 'react-markdown'
 
 type Props = {
   title: string
@@ -12,7 +10,7 @@ type Props = {
   content: string
 }
 
-const BlogHeader = ({ title, author, createdAt, time, description, content, image }: Props) => {
+const BlogHeader = ({ title, author, createdAt, time, description, image }: Props) => {
   return (
     <div className='flex flex-col sm:gap-9 gap-3 '>
       <h2 className='sm:text-4xl text-3xl font-bold text-slate-800 '>{title}</h2>

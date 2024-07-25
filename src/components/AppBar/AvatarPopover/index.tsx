@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Popover, PopoverContent, PopoverTrigger, PopoverClose } from '@/components/ui/popover'
 import { BookCopy, CircleUser, SquarePen } from 'lucide-react'
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 
 const profile_items: {

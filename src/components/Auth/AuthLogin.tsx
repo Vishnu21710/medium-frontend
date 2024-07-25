@@ -1,11 +1,10 @@
-import React, { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import Input from './Input'
 import { Link } from 'react-router-dom'
-import { SigninInput, SignupInput } from '@oblivion_2171/medium-common'
+import {  SignupInput } from '@oblivion_2171/medium-common'
 
-type Props = {}
 
-const AuthLogin = (props: Props) => {
+const AuthLogin = () => {
 
   const [signinInputs , setSigninInputs] = useState<SignupInput>({
     email: "",

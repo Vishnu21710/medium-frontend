@@ -1,14 +1,12 @@
 import SaveListCard from '@/components/SaveList/save-list-card'
 import { getSaveLists } from '@/queryFns/getSaveLists'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery} from '@tanstack/react-query'
 import { LoaderCircle } from 'lucide-react'
-import React from 'react'
 
-type Props = {}
 
-const UserLists = (props: Props) => {
+const UserLists = () => {
 
-  const { data: saveLists, isSuccess, isLoading, isFetching} = useQuery({
+  const { data: saveLists, isSuccess, isLoading} = useQuery({
     queryKey: ['savelists'],
     queryFn: getSaveLists,
     staleTime: 5000

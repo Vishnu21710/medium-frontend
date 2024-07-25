@@ -1,6 +1,4 @@
 import BlogHeader from './BlogHeader'
-import { Blog } from '../../../hooks'
-import { Image } from '@/types'
 import Markdown from 'react-markdown'
 
 type Props = {

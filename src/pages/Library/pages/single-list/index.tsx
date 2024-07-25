@@ -1,10 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import React from 'react'
 import { useParams } from 'react-router-dom'
 
-type Props = {}
 
-const SingleList = (props: Props) => {
+const SingleList = () => {
 
     const params = useParams()
 
